@@ -27,6 +27,8 @@ namespace WebApplicationBlog
         {
             services.AddControllersWithViews();
 
+            services.AddSession();
+
             services.AddMvc(config =>
             {
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
@@ -52,6 +54,8 @@ namespace WebApplicationBlog
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 
