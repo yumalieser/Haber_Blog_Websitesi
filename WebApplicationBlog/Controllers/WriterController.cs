@@ -9,5 +9,18 @@ namespace WebApplicationBlog.Controllers
         {
             return View();
         }
+        public IActionResult WriterProfile()
+        {
+            return View();
+        }
+        public IActionResult WriterMail()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        public IActionResult Test()
+        {
+            return View();
+        }
     }
 }
