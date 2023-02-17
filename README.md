@@ -1,6 +1,8 @@
 # Haber_Blog_Websitesi
 ASP .NET Core 5.0 üzerinde geliştirilmiş Html ve CSS yardımıyla Frontend kısmı hazırlanmış bir Haber/Blog websitesi kaynak kodlarıdır.
 
+# v1.7
+Yazar Yönetim paneli düzenlemeleri ve site içi notification işlemleri gerçekleştirildi. Web sayfası geliştirilirken ucu açık bırakılan yerler gözden geçirildi. Tüm kaynak koda Refactoring işlemi uygulandı.
 
 # v1.6
 Yazar(Admin) Yönetim Paneli eklendi. Authentication işlemleri ve Authorize olma işlemleri çalışır hale getirildi. Admin paneli üzerinde çeşitli düzenlemeler ve modifikasyonlar gerçekleştirildi.
