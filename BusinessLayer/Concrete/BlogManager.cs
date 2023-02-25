@@ -20,7 +20,7 @@ namespace BusinessLayer.Concrete
 
 		public void BlogAdd(Blog blog)
 		{
-			throw new NotImplementedException();
+			_blogDal.Insert(blog);
 		}
 
 		public void BlogDelete(Blog blog)
