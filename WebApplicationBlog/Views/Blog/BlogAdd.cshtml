@@ -14,7 +14,7 @@
     @Html.ValidationMessageFor(x=>x.BlogTitle)
     <br />
     @Html.Label("Kategori")
-    @Html.TextBoxFor(x=>x.CategoryID, new {@class = "form-control"})
+    @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.cv,new {@class = "form-control"})
     <br />
     @Html.Label("Blog Görseli")
     @Html.TextBoxFor(x=>x.BlogImage, new {@class = "form-control"})
