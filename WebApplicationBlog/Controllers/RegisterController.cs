@@ -28,7 +28,7 @@ namespace WebApplicationBlog.Controllers
             {
                 p.WriterStatus = true;
                 p.WriterAbout = "Merhaba ben yeni bir yazarım.";
-                wm.WriterAdd(p);
+                wm.TAdd(p);
                 return RedirectToAction("Index", "Blog");
             }
             else
