@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -7,15 +8,22 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
+using System.Linq;
 using WebApplicationBlog.Models;
 
 namespace WebApplicationBlog.Controllers
 {
     public class WriterController : Controller
     {
-        WriterManager wm = new WriterManager (new EfWriterRepository());
+        WriterManager wm = new WriterManager(new EfWriterRepository());
+        [Authorize]
         public IActionResult Index()
         {
+            var userMail = User.Identity.Name;
+            ViewBag.v = userMail;
+            Context c = new Context();
+            var writerName = c.Writers.Where(x => x.WriterMail  == userMail).Select(y => y.WriterName).FirstOrDefault();
+            ViewBag.v2 = writerName;
             return View();
         }
         public IActionResult WriterProfile()
@@ -41,23 +49,26 @@ namespace WebApplicationBlog.Controllers
         {
             return PartialView();
         }
-        [AllowAnonymous]
+
         [HttpGet]
         public IActionResult WriterEditProfile()
         {
-            var writervalues = wm.TGetById(1);
+            Context c = new Context();
+            var userMail = User.Identity.Name;
+            var writerID = c.Writers.Where(x => x.WriterMail  == userMail).Select(y => y.WriterID).FirstOrDefault();
+            var writervalues = wm.TGetById(writerID);
             return View(writervalues);
         }
-        [AllowAnonymous]
+
         [HttpPost]
         public IActionResult WriterEditProfile(Writer p)
         {
             WriterValidator wl = new WriterValidator();
             ValidationResult results = wl.Validate(p);
-            if(results.IsValid)
+            if (results.IsValid)
             {
                 wm.TUpdate(p);
-                return RedirectToAction("Index","Dashboard");
+                return RedirectToAction("Index", "Dashboard");
             }
             else
             {
@@ -74,7 +85,7 @@ namespace WebApplicationBlog.Controllers
         {
             return View();
         }
-            [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpPost]
         public IActionResult WriterAdd(AddProfileImage p)
         {
