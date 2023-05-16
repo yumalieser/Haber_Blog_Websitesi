@@ -12,7 +12,7 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=LAPTOP-RM9DM0BH;database=WebApplicationBlogDb; integrated security=true;");
+            optionsBuilder.UseSqlServer("server=ACER-NITRO-ALI;database=WebApplicationBlogDb; integrated security=true;");
         }
 
         protected override void OnModelCreating (ModelBuilder modelBuilder)
