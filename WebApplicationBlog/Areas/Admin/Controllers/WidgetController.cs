@@ -2,9 +2,9 @@
 
 namespace WebApplicationBlog.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class WidgetController : Controller
     {
-        [Area("Admin")] 
+        [Area("Admin")]
         public IActionResult Index()
         {
             return View();

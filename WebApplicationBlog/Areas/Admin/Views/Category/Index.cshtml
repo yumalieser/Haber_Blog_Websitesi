@@ -1,5 +1,8 @@
 ﻿@using EntityLayer.Concrete
-@model List<Category>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Category>
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -17,13 +20,18 @@
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>@item.CategoryID</td>
-            <td>@item.CAtegoryName</td>
-            <td><a href="#" class="btn btn-danger">Pasif Yap</a></td>
-            <td><a href="#" class="btn btn-success">Aktif Yap</a></td>
-            <td><a href="#" class="btn btn-outline-warning">Düzenle</a></td>
-        </tr>
+            <tr>
+                <td>@item.CategoryID</td>
+                <td>@item.CAtegoryName</td>
+                <td><a href="#" class="btn btn-danger">Pasif Yap</a></td>
+                <td><a href="#" class="btn btn-success">Aktif Yap</a></td>
+                <td><a href="/Category/CategoryDelete/@item.CategoryID/" id="DeleteBtn" 
+                    onclick="return confirm('Silmek istediğinize emin misiniz?');" class="btn btn-outline-warning">Sil</a></td>
+            </tr>
     }
 </table>
+<a href="/Admin/Category/AddCategory/" class="btn btn-primary">Yeni Kategori Oluştur</a>
+<br />
+<br />
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index",new { page }))
 
